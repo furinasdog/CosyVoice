@@ -38,27 +38,8 @@ pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple --tr
 echo "[7/10] 安装 sox 和 libsox-dev..."
 sudo apt-get install sox libsox-dev -y
 
-# 8. 解压并安装 ttsfrd 相关依赖
-echo "[8/10] 解压并安装 ttsfrd 相关依赖..."
-cd pretrained_models/CosyVoice-ttsfrd/
-unzip resource.zip -d .
-pip install ttsfrd_dependency-0.1-py3-none-any.whl
-pip install ttsfrd-0.4.2-cp310-cp310-linux_x86_64.whl
-cd ../..
-
-# 9. 特殊处理：降级 setuptools -> 安装 whisper/pyworld (无隔离) -> 升级 setuptools
-echo "[9/10] 特殊处理：降级 setuptools 以安装 openai-whisper 和 pyworld..."
-echo "      降级 setuptools 到 81.0.0..."
-pip install "setuptools==81.0.0" -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com
-
-echo "      安装 openai-whisper 和 pyworld (无构建隔离)..."
-pip install openai-whisper==20231117 pyworld==0.3.4 --no-build-isolation -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host=pypi.tuna.tsinghua.edu.cn
-
-echo "      升级 setuptools 到最新版本..."
-pip install --upgrade setuptools -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host=pypi.tuna.tsinghua.edu.cn
-
-# 10. 下载预训练模型 (在 ttsfrd 安装完成后下载所有模型)
-echo "[10/10] 下载预训练模型..."
+# 8. 下载预训练模型 (在 ttsfrd 安装之前下载)
+echo "[8/10] 下载预训练模型..."
 python3 << 'EOF'
 try:
     from modelscope import snapshot_download
@@ -104,6 +85,25 @@ except ImportError:
         print("错误：ModelScope 和 HuggingFace 均未安装，请手动下载模型")
         print("请参考 README.md 中的模型下载说明")
 EOF
+
+# 9. 解压并安装 ttsfrd 相关依赖
+echo "[9/10] 解压并安装 ttsfrd 相关依赖..."
+cd pretrained_models/CosyVoice-ttsfrd/
+unzip resource.zip -d .
+pip install ttsfrd_dependency-0.1-py3-none-any.whl
+pip install ttsfrd-0.4.2-cp310-cp310-linux_x86_64.whl
+cd ../..
+
+# 10. 特殊处理：降级 setuptools -> 安装 whisper/pyworld (无隔离) -> 升级 setuptools
+echo "[10/10] 特殊处理：降级 setuptools 以安装 openai-whisper 和 pyworld..."
+echo "      降级 setuptools 到 81.0.0..."
+pip install "setuptools==81.0.0" -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com
+
+echo "      安装 openai-whisper 和 pyworld (无构建隔离)..."
+pip install openai-whisper==20231117 pyworld==0.3.4 --no-build-isolation -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host=pypi.tuna.tsinghua.edu.cn
+
+echo "      升级 setuptools 到最新版本..."
+pip install --upgrade setuptools -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host=pypi.tuna.tsinghua.edu.cn
 
 echo "=========================================="
 echo "安装完成!"
