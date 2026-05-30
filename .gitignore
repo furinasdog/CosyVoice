@@ -1,52 +1,69 @@
-# Byte-compiled / optimized / DLL files
+```
+# Compiled and binary files
+*.pyc
+*.pyo
+*.class
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.out
+
+# Dependencies
+node_modules/
+venv/
+.venv/
 __pycache__/
-*.py[cod]
-*$py.class
+.mypy_cache/
+.pytest_cache/
+dist/
+build/
+target/
+.gradle/
 
-# Visual Studio Code files
-.vscode
-.vs
-
-# PyCharm files
-.idea
-
-# Eclipse Project settings
-*.*project
-.settings
-
-# Sublime Text settings
-*.sublime-workspace
-*.sublime-project
-
-# Editor temporaries
-*.swn
-*.swo
+# Editor/IDE files
+.vscode/
+.idea/
 *.swp
-*.swm
-*~
+*.swo
+*.tmp
 
-# IPython notebook checkpoints
-.ipynb_checkpoints
-
-# macOS dir files
+# System files
 .DS_Store
+Thumbs.db
+.env
+.env.local
+*.env.*
 
-exp
-data
-raw_wav
-tensorboard
-**/*build*
+# Logs and coverage
+*.log
+coverage/
+htmlcov/
+.coverage
 
-# Clangd files
-.cache
-compile_commands.json
-
-# train/inference files
-*.wav
-*.m4a
-*.aac
-*.pt
-pretrained_models/*
-*_pb2_grpc.py
-*_pb2.py
+# Compressed files
+*.zip
+*.gz
 *.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
+```
