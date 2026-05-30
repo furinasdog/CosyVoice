@@ -102,9 +102,6 @@ pip install "setuptools==81.0.0" -i https://mirrors.aliyun.com/pypi/simple/ --tr
 echo "      安装 openai-whisper 和 pyworld (无构建隔离)..."
 pip install openai-whisper==20231117 pyworld==0.3.4 --no-build-isolation -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host=pypi.tuna.tsinghua.edu.cn
 
-echo "      升级 setuptools 到最新版本..."
-pip install --upgrade setuptools -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host=pypi.tuna.tsinghua.edu.cn
-
 echo "=========================================="
 echo "安装完成!"
 echo "请运行以下命令激活环境:"
